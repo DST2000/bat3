@@ -17,63 +17,82 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 <?php endif; ?>
 
 
-<div class="container">
-	<div class="row">
-		<?php foreach ($list as $item) : ?>
-			<div class="col-md-4">
-				<div>
-					<?php $link = $item->clickurl ; ?>
-					<?php $image_big = $item->image_big; ?>
-					<?php $image_big_alt = $item->image_big_alt; ?>
-					<?php $image_small = $item->image_small; ?>
-					<?php $image_small_alt = $item->image_small_alt; ?>
-					<?php $header_title = $item->header_title; ?>
-					<?php $header_text = $item->header_text; ?>
-					<?php $middle_text = $item->middle_text; ?>
-					<?php $footer_text = $item->footer_text; ?>
-					<?php if (!empty($link)) : ?>
-						<a href="<?php echo $link; ?>" target="_blank" rel=""
-							title="<?php echo htmlspecialchars($item->name, ENT_QUOTES, 'UTF-8'); ?>">
-					<?php endif; ?>
-						<ul style="list-style: none">
-							<li>
-								<?php if (BatbrandHelper::isImage($image_big)) : ?>
-								<?php $baseurl = strpos($image_big, 'http') === 0 ? '' : JUri::base(); ?>
-								<img
-									src="<?php echo $baseurl . $image_big; ?>"
-									alt="<?php echo $image_big_alt;?>"
-								/>
-								<?php endif; ?>
-							</li>
-							<li>
-								<?php if (BatbrandHelper::isImage($image_small)) : ?>
-								<?php $baseurl = strpos($image_small, 'http') === 0 ? '' : JUri::base(); ?>
-								<img
-									src="<?php echo $baseurl . $image_small; ?>"
-									alt="<?php echo $image_small_alt;?>"
-								/>
-								<?php endif; ?>
-							</li>
-							<li>
-								<?php if (!empty($header_title)) echo '<h2>' . $header_title . '</h2>';?>
-							</li>
-							<li>
-								<?php if (!empty($header_text)) echo $header_text; ?>
-							</li>
-							<li>
-								<?php if (!empty($middle_text)) echo $middle_text; ?>
-							</li>
-							<li>
-								<?php if (!empty($footer_text)) echo $footer_text; ?>
-							</li>
-						</ul>
-					<?php if (!empty($link)) : ?>
-						</a>
-					<?php endif; ?>
-				</div>
+
+<div class="row">
+	<?php foreach ($list as $item) : ?>
+		<div class="col-md-4">
+			<div class="<?php echo $item->alias.' brandbox';?>">
+				<?php $link = $item->clickurl ; ?>
+				<?php $image_big = $item->image_big; ?>
+				<?php $image_big_alt = $item->image_big_alt; ?>
+				<?php $image_small = $item->image_small; ?>
+				<?php $image_small_alt = $item->image_small_alt; ?>
+				<?php $header_title = $item->header_title; ?>
+				<?php $header_text = $item->header_text; ?>
+				<?php $middle_text = $item->middle_text; ?>
+				<?php $footer_text = $item->footer_text; ?>
+				<?php if (!empty($link)) : ?>
+					<a href="<?php echo $link; ?>" target="_blank" rel=""
+						title="<?php echo htmlspecialchars($item->name, ENT_QUOTES, 'UTF-8'); ?>">
+				<?php endif; ?>
+					<ul style="list-style: none">
+						<li>
+							<?php if (BatbrandHelper::isImage($image_big)) : ?>
+							<?php $baseurl = strpos($image_big, 'http') === 0 ? '' : JUri::base(); ?>
+							<img
+								src="" alt="" style="display: none" class="img_big"
+								src_big="<?php echo $baseurl . $image_big; ?>"
+								alt_big="<?php echo $image_big_alt;?>"
+							/>
+							<?php endif; ?>
+						</li>
+						<li>
+							<?php if (BatbrandHelper::isImage($image_small)) : ?>
+							<?php $baseurl = strpos($image_small, 'http') === 0 ? '' : JUri::base(); ?>
+							<img
+								src="<?php echo $baseurl . $image_small; ?>"
+								alt="<?php echo $image_small_alt;?>"
+							/>
+							<?php endif; ?>
+						</li>
+						<li>
+							<?php if (!empty($header_title)) echo '<h2>' . $header_title . '</h2>';?>
+						</li>
+						<li>
+							<?php if (!empty($header_text)) echo $header_text; ?>
+						</li>
+						<li>
+							<?php if (!empty($middle_text)) echo $middle_text; ?>
+						</li>
+						<li>
+							<?php if (!empty($footer_text)) echo $footer_text; ?>
+						</li>
+					</ul>
+				<?php if (!empty($link)) : ?>
+					</a>
+				<?php endif; ?>
 			</div>
-		<?php endforeach; ?>
-	</div>
+		</div>
+	<?php endforeach; ?>
+	
+	<script>
+//		jQuery('.brandbox').onclick(function()
+//								   {
+//									jQuery(this).children('img.img_big').attr('src', jQuery(this).children('img.img_big').value('src_big'));
+//									}
+//		);
+		jQuery(window).on('load',  function() {
+			jQuery('.brandbox').on({
+							'click': function(){
+								alert('aaaa');
+								//alert(jQuery(this).children('img.img_big').('src_big'));
+								//jQuery(this).children('.img_big').css('display':'block');
+									//.attr("src","http://dummyimage.com/250x155/");
+									//.attr('src','second.jpg');
+							}
+						});
+		});
+	</script>
 </div>
 
 	
