@@ -94,13 +94,85 @@
 			buttons="true"
 			hide="readmore,pagebreak,module,article,contact,menu"
 		/>
+		
+		<field
+			name="image_big"
+			type="media"
+			label="COM_BATBRANDS_FIELD_IMAGE_LABEL_BIG"
+			description="COM_BATBRANDS_FIELD_IMAGE_BIG_DESC"
+			directory="batbrands"
+			size="40"
+		/>
+		
+		<field
+			name="image_big_alt"
+			type="text"
+			label="COM_BATBRANDS_FIELD_ALT_LABEL"
+			description="COM_BATBRANDS_FIELD_IMAGE_BIG_ALT_DESC"
+		/>
+		
+		<field
+			name="image_small"
+			type="media"
+			label="COM_BATBRANDS_FIELD_IMAGE_LABEL_SMALL"
+			description="COM_BATBRANDS_FIELD_IMAGE_SMALL_DESC"
+			directory="batbrands"
+			size="80"
+		/>
+		
+		<field
+			name="image_small_alt"
+			type="text"
+			label="COM_BATBRANDS_FIELD_ALT_LABEL"
+			description="COM_BATBRANDS_FIELD_IMAGE_SMALL_ALT_DESC"
+		/>
+		
+		<field
+			name="header_title"
+			type="editor"
+			label="COM_BATBRANDS_HEADER_TITLE_DESCRIPTION"
+			description="COM_BATBRANDS_FIELD_HEADER_TITLE_DESCRIPTION_DESC"
+			filter="JComponentHelper::filterText"
+			buttons="true"
+			hide=""
+		/>
+		
+		<field
+			name="header_text"
+			type="editor"
+			label="COM_BATBRANDS_HEADER_DESCRIPTION"
+			description="COM_BATBRANDS_FIELD_HEADER_DESCRIPTION_DESC"
+			filter="JComponentHelper::filterText"
+			buttons="true"
+			hide=""
+		/>
+		
+		<field
+			name="middle_text"
+			type="editor"
+			label="COM_BATBRANDS_MIDDLE_DESCRIPTION"
+			description="COM_BATBRANDS_FIELD_MIDDLE_DESCRIPTION_DESC"
+			filter="JComponentHelper::filterText"
+			buttons="true"
+			hide=""
+		/>
+		
+		<field
+			name="footer_text"
+			type="editor"
+			label="COM_BATBRANDS_FOOTER_DESCRIPTION"
+			description="COM_BATBRANDS_FIELD_FOOTER_DESCRIPTION_DESC"
+			filter="JComponentHelper::filterText"
+			buttons="true"
+			hide=""
+		/>
 
 		<field
 			name="type"
 			type="list"
 			label="COM_BATBRANDS_FIELD_TYPE_LABEL"
 			description="COM_BATBRANDS_FIELD_TYPE_DESC"
-			default="0"
+			default="1"
 			>
 			<option value="0">COM_BATBRANDS_FIELD_VALUE_IMAGE</option>
 			<option value="1">COM_BATBRANDS_FIELD_VALUE_CUSTOM</option>

@@ -59,6 +59,14 @@ JFactory::getDocument()->addScriptDeclaration('
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('COM_BATBRANDS_BATBRAND_DETAILS')); ?>
 		<div class="row-fluid">
 			<div class="span9">
+				<?php echo $this->form->renderField('image_big'); ?>
+				<?php echo $this->form->renderField('image_big_alt'); ?>
+				<?php echo $this->form->renderField('image_small'); ?>
+				<?php echo $this->form->renderField('image_small_alt'); ?>
+				<?php echo $this->form->renderField('header_title'); ?>
+				<?php echo $this->form->renderField('header_text'); ?>
+				<?php echo $this->form->renderField('middle_text'); ?>
+				<?php echo $this->form->renderField('footer_text'); ?>
 				<?php echo $this->form->renderField('type'); ?>
 				<div id="image">
 					<?php echo $this->form->renderFieldset('image'); ?>
