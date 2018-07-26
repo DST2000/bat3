@@ -28,6 +28,14 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 				<?php $image_small = $item->image_small; ?>
 				<?php $image_small_alt = $item->image_small_alt; ?>
 				<?php $header_title = $item->header_title; ?>
+				<?php $surface_area = $item->surface_area; ?>
+				<?php $angle_processing = $item->angle_processing; ?>
+				<?php $spacer = $item->spacer; ?>
+				<?php $color = $item->color; ?>
+				<?php $soffit_type = $item->soffit_type; ?>
+				<?php $number_levels = $item->number_levels; ?>
+				<?php $cost = $item->cost; ?>
+				<?php $soffit_type = $item->soffit_type; ?>
 				<?php $header_text = $item->header_text; ?>
 				<?php $middle_text = $item->middle_text; ?>
 				<?php $footer_text = $item->footer_text; ?>
@@ -35,16 +43,10 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 					<a href="<?php echo $link; ?>" target="_blank" rel=""
 						title="<?php echo htmlspecialchars($item->name, ENT_QUOTES, 'UTF-8'); ?>">
 				<?php endif; ?>
-					<ul style="list-style: none">
+					<ul style="list-style: none">		
 						<li>
-							<?php if (BatbrandHelper::isImage($image_big)) : ?>
-							<?php $baseurl = strpos($image_big, 'http') === 0 ? '' : JUri::base(); ?>
-							<img
-								src="" alt="" style="display: none" class="img_big"
-								src_big="<?php echo $baseurl . $image_big; ?>"
-								alt_big="<?php echo $image_big_alt;?>"
-							/>
-							<?php endif; ?>
+							<?php if (!empty($header_title)) echo '<h2>' . $header_title . '</h2>';?>
+							<?php if (!empty($cost)) echo '<span>' . $cost . ' р</span>'; ?>
 						</li>
 						<li>
 							<?php if (BatbrandHelper::isImage($image_small)) : ?>
@@ -56,7 +58,36 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 							<?php endif; ?>
 						</li>
 						<li>
-							<?php if (!empty($header_title)) echo '<h2>' . $header_title . '</h2>';?>
+							<?php if (BatbrandHelper::isImage($image_big)) : ?>
+							<?php $baseurl = strpos($image_big, 'http') === 0 ? '' : JUri::base(); ?>
+							<img
+								src="" alt="none" style="display: none" class="img_big"
+								src_big="<?php echo $baseurl . $image_big; ?>"
+								alt_big="<?php echo $image_big_alt;?>"
+							/>
+							<?php endif; ?>
+						</li>
+						
+						<li class="show_big" style="display: none" >
+							<?php if (!empty($surface_area)) echo 'Площадь: ' . $surface_area; ?>
+						</li>
+						<li class="show_big" style="display: none" >
+							<?php if (!empty($angle_processing)) echo 'Обработка углов: ' . $angle_processing; ?>
+						</li>
+						<li class="show_big" style="display: none" >
+							<?php if (!empty($spacer)) echo 'Закладная: ' . $spacer; ?>
+						</li>
+						<li class="show_big" style="display: none" >
+							<?php if (!empty($color)) echo 'Цвет: ' . $color; ?>
+						</li>
+						<li class="show_big" style="display: none" >
+							<?php if (!empty($soffit_type)) echo 'Тип навесного потолка: ' . $soffit_type; ?>
+						</li>
+						<li class="show_big" style="display: none" >
+							<?php if (!empty($number_levels)) echo 'Количество уровней: ' . $number_levels; ?>
+						</li>
+						<li class="show_big" style="display: none" >
+							<?php if (!empty($cost)) echo '<span>' . $cost . ' р</span>'; ?>
 						</li>
 						<li>
 							<?php if (!empty($header_text)) echo $header_text; ?>
@@ -76,21 +107,27 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 	<?php endforeach; ?>
 	
 	<script>
-//		jQuery('.brandbox').onclick(function()
-//								   {
-//									jQuery(this).children('img.img_big').attr('src', jQuery(this).children('img.img_big').value('src_big'));
-//									}
-//		);
 		jQuery(window).on('load',  function() {
-			jQuery('.brandbox').on({
-							'click': function(){
-								alert('aaaa');
-								//alert(jQuery(this).children('img.img_big').('src_big'));
-								//jQuery(this).children('.img_big').css('display':'block');
-									//.attr("src","http://dummyimage.com/250x155/");
-									//.attr('src','second.jpg');
+			jQuery('.brandbox').click(
+							function(){
+								$new_src = jQuery('.img_big').attr('src_big');
+								$new_alt = jQuery('.img_big').attr('alt_big');
+								jQuery('.img_big').hide();
+								jQuery('.img_big').attr('src', ' ');
+								jQuery('.img_big').attr('alt', ' ');
+								jQuery('.show_big').hide();
+								jQuery(this).find('.img_big').css('display', 'block');
+								jQuery(this).find('.img_big').attr('src', $new_src);
+								jQuery(this).find('.img_big').attr('alt', $new_alt);					
+								jQuery(this).find('.show_big').css('display', 'block');		
+								//jQuery('."col-md-12 i"').removeClass('col-md-12 i').addClass('col-md-4 i');
+								//jQuery(this).parent('div').removeClass().addClass('col-md-12 i');
+								//jQuery(this).parent('.col-md-4').append('<div class="col-md-12">TEXT</div>');
+								//jQuery(this).parent('.col-md-4').append('<div class="col-md-12">TEXT</div>');
+								jQuery(this).parent('.col-md-4').after('<div class="col-md-12 bigblock">TEXT</div>');
+								//jQuery(this).parent('.col-md-4').insertAfter('<div class="col-md-12">TEXT</div>');
 							}
-						});
+						);
 		});
 	</script>
 </div>
