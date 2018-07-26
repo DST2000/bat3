@@ -116,6 +116,7 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 								jQuery('.img_big').attr('src', ' ');
 								jQuery('.img_big').attr('alt', ' ');
 								jQuery('.show_big').hide();
+								jQuery('.bigblock').remove();
 								jQuery(this).find('.img_big').css('display', 'block');
 								jQuery(this).find('.img_big').attr('src', $new_src);
 								jQuery(this).find('.img_big').attr('alt', $new_alt);					
@@ -124,7 +125,12 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 								//jQuery(this).parent('div').removeClass().addClass('col-md-12 i');
 								//jQuery(this).parent('.col-md-4').append('<div class="col-md-12">TEXT</div>');
 								//jQuery(this).parent('.col-md-4').append('<div class="col-md-12">TEXT</div>');
-								jQuery(this).parent('.col-md-4').after('<div class="col-md-12 bigblock">TEXT</div>');
+								jQuery(this).parent('.col-md-4')
+									.after('<div class="col-md-12 bigblock">'
+										   +'<img class="new_image_big img-fluid"  scr="'+ $new_src +'" alt="'+ $new_alt +'" />'
+										   +'</div>');
+								jQuery('.new_image_big').attr('src', $new_src);
+								//jQuery('.new_image_big').attr('alt', $new_alt);
 								//jQuery(this).parent('.col-md-4').insertAfter('<div class="col-md-12">TEXT</div>');
 							}
 						);
