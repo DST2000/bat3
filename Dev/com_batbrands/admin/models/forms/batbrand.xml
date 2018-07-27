@@ -129,12 +129,9 @@
 		
 		<field
 			name="header_title"
-			type="editor"
+			type="text"
 			label="COM_BATBRANDS_HEADER_TITLE_DESCRIPTION"
 			description="COM_BATBRANDS_FIELD_HEADER_TITLE_DESCRIPTION_DESC"
-			filter="JComponentHelper::filterText"
-			buttons="true"
-			hide=""
 		/>
 		
 		<field

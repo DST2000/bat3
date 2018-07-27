@@ -43,62 +43,73 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 					<a href="<?php echo $link; ?>" target="_blank" rel=""
 						title="<?php echo htmlspecialchars($item->name, ENT_QUOTES, 'UTF-8'); ?>">
 				<?php endif; ?>
-					<ul style="list-style: none">		
-						<li>
-							<?php if (!empty($header_title)) echo '<h2>' . $header_title . '</h2>';?>
-							<?php if (!empty($cost)) echo '<span>' . $cost . ' р</span>'; ?>
-						</li>
-						<li>
-							<?php if (BatbrandHelper::isImage($image_small)) : ?>
+					<p class="header">
+						<?php if (!empty($header_title)) echo $header_title;?>
+						<?php if (!empty($cost)) echo '<span> за ' . $cost . ' рублей</span>'; ?>
+					</p>	
+					<div>
+						<?php if (BatbrandHelper::isImage($image_small)) : ?>
 							<?php $baseurl = strpos($image_small, 'http') === 0 ? '' : JUri::base(); ?>
 							<img
 								src="<?php echo $baseurl . $image_small; ?>"
 								alt="<?php echo $image_small_alt;?>"
+								class="img_small"
 							/>
-							<?php endif; ?>
-						</li>
-						<li>
+						<?php endif; ?>
+					</div>	
+					<div class="row">
+						<div class="col-md-8">
 							<?php if (BatbrandHelper::isImage($image_big)) : ?>
 							<?php $baseurl = strpos($image_big, 'http') === 0 ? '' : JUri::base(); ?>
 							<img
-								src="" alt="none" style="display: none" class="img_big"
+								src="" alt="none" style="display: none" class="img_big img-fluid"
 								src_big="<?php echo $baseurl . $image_big; ?>"
 								alt_big="<?php echo $image_big_alt;?>"
 							/>
 							<?php endif; ?>
-						</li>
-						
-						<li class="show_big" style="display: none" >
-							<?php if (!empty($surface_area)) echo 'Площадь: ' . $surface_area; ?>
-						</li>
-						<li class="show_big" style="display: none" >
-							<?php if (!empty($angle_processing)) echo 'Обработка углов: ' . $angle_processing; ?>
-						</li>
-						<li class="show_big" style="display: none" >
-							<?php if (!empty($spacer)) echo 'Закладная: ' . $spacer; ?>
-						</li>
-						<li class="show_big" style="display: none" >
-							<?php if (!empty($color)) echo 'Цвет: ' . $color; ?>
-						</li>
-						<li class="show_big" style="display: none" >
-							<?php if (!empty($soffit_type)) echo 'Тип навесного потолка: ' . $soffit_type; ?>
-						</li>
-						<li class="show_big" style="display: none" >
-							<?php if (!empty($number_levels)) echo 'Количество уровней: ' . $number_levels; ?>
-						</li>
-						<li class="show_big" style="display: none" >
-							<?php if (!empty($cost)) echo '<span>' . $cost . ' р</span>'; ?>
-						</li>
-						<li>
-							<?php if (!empty($header_text)) echo $header_text; ?>
-						</li>
-						<li>
-							<?php if (!empty($middle_text)) echo $middle_text; ?>
-						</li>
-						<li>
-							<?php if (!empty($footer_text)) echo $footer_text; ?>
-						</li>
-					</ul>
+						</div>
+						<div class="col-md-4">
+							<ul style="list-style: none; display: none;" class="show_big">
+								<li>
+									<h3>
+										<?php if (!empty($header_title)) echo $header_title;?>
+										<?php if (!empty($cost)) echo '<span> за ' . $cost . ' рублей</span>'; ?>
+									</h3>
+								</li>
+								<li>
+									<?php if (!empty($surface_area)) echo 'Площадь: ' . $surface_area . ' м<sup>2</sup>'; ?>
+								</li>
+								<li>
+									<?php if (!empty($angle_processing)) echo 'Обработка углов: ' . $angle_processing . ' шт.'; ?>
+								</li>
+								<li>
+									<?php if (!empty($spacer)) echo 'Закладная: ' . $spacer . ' шт.'; ?>
+								</li>
+								<li>
+									<?php if (!empty($color)) echo 'Цвет: ' . $color; ?>
+								</li>
+								<li>
+									<?php if (!empty($soffit_type)) echo 'Тип навесного потолка: ' . $soffit_type; ?>
+								</li>
+								<li>
+									<?php if (!empty($number_levels)) echo 'Количество уровней: ' . $number_levels . ' шт.'; ?>
+								</li>
+								<li>
+									<?php if (!empty($cost)) echo '<h4>Стоимость <span>' . $cost . ' рублей</span></h4>'; ?>
+								</li>
+								<li>
+									<?php if (!empty($header_text)) echo $header_text; ?>
+								</li>
+								<li>
+									<?php if (!empty($middle_text)) echo $middle_text; ?>
+								</li>
+								<li>
+									<?php if (!empty($footer_text)) echo $footer_text; ?>
+								</li>
+							</ul>
+						</div>
+					</div>
+	
 				<?php if (!empty($link)) : ?>
 					</a>
 				<?php endif; ?>
@@ -110,26 +121,33 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 		jQuery(window).on('load',  function() {
 			jQuery('.brandbox').click(
 							function(){
-								$new_src = jQuery('.img_big').attr('src_big');
-								$new_alt = jQuery('.img_big').attr('alt_big');
+								$new_src = jQuery(this).find('.img_big').attr('src_big');
+								$new_alt = jQuery(this).find('.img_big').attr('alt_big');
 								jQuery('.img_big').hide();
 								jQuery('.img_big').attr('src', ' ');
 								jQuery('.img_big').attr('alt', ' ');
 								jQuery('.show_big').hide();
 								jQuery('.bigblock').remove();
+								jQuery('.arrows_add').remove();
 								jQuery(this).find('.img_big').css('display', 'block');
 								jQuery(this).find('.img_big').attr('src', $new_src);
 								jQuery(this).find('.img_big').attr('alt', $new_alt);					
-								jQuery(this).find('.show_big').css('display', 'block');		
-								//jQuery('."col-md-12 i"').removeClass('col-md-12 i').addClass('col-md-4 i');
-								//jQuery(this).parent('div').removeClass().addClass('col-md-12 i');
-								//jQuery(this).parent('.col-md-4').append('<div class="col-md-12">TEXT</div>');
-								//jQuery(this).parent('.col-md-4').append('<div class="col-md-12">TEXT</div>');
+								jQuery(this).find('.show_big').css('display', 'block');	
+							
 								jQuery(this).parent('.col-md-4')
-									.after('<div class="col-md-12 bigblock">'
-										   +'<img class="new_image_big img-fluid"  scr="'+ $new_src +'" alt="'+ $new_alt +'" />'
-										   +'</div>');
+									.after('<div class="col-md-12 bigblock"></div>');
 								jQuery('.new_image_big').attr('src', $new_src);
+								jQuery(this).clone().appendTo('.bigblock');
+								jQuery('.bigblock').find('.img_big').css('display', 'inline');
+								jQuery('.bigblock').find('.img_big').attr('src', $new_src);
+								jQuery('.bigblock').find('.img_big').attr('alt', $new_alt);					
+								jQuery('.bigblock').find('.img_small').css('display', 'none');	
+								jQuery('.bigblock').css('background', '#42ECEF');	
+								jQuery(this).find('.img_big').css('display', 'none');
+								jQuery(this).find('.show_big').css('display', 'none');
+								jQuery(this).parent('.col-md-4').append('<span class="arrows_add text-info" style="background:#42ECEF">&darr;</span>');
+								jQuery('.bigblock').find('p.header').remove();
+
 								//jQuery('.new_image_big').attr('alt', $new_alt);
 								//jQuery(this).parent('.col-md-4').insertAfter('<div class="col-md-12">TEXT</div>');
 							}
@@ -137,97 +155,6 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 		});
 	</script>
 </div>
-
-	
-<?php foreach ($list as $item) : ?>
-	<div class="batbranditem">
-		<?php $link = JRoute::_('index.php?option=com_batbrands&task=click&id=' . $item->id); ?>
-		<?php if ($item->type == 1) : ?>
-			<?php // Text based batbrands ?>
-			<?php echo str_replace(array('{CLICKURL}', '{NAME}'), array($link, $item->name), $item->custombatbrandcode); ?>
-		<?php else : ?>
-			<?php $imageurl = $item->params->get('imageurl'); ?>
-			<?php $width = $item->params->get('width'); ?>
-			<?php $height = $item->params->get('height'); ?>
-			<?php if (BatbrandHelper::isImage($imageurl)) : ?>
-				<?php // Image based batbrand ?>
-				<?php $baseurl = strpos($imageurl, 'http') === 0 ? '' : JUri::base(); ?>
-				<?php $alt = $item->params->get('alt'); ?>
-				<?php $alt = $alt ?: $item->name; ?>
-				<?php $alt = $alt ?: JText::_('MOD_BATBRANDS_BATBRAND'); ?>
-				<?php if ($item->clickurl) : ?>
-					<?php // Wrap the batbrand in a link ?>
-					<?php $target = $params->get('target', 1); ?>
-					<?php if ($target == 1) : ?>
-						<?php // Open in a new window ?>
-						<a
-							href="<?php echo $link; ?>" target="_blank" rel="noopener noreferrer"
-							title="<?php echo htmlspecialchars($item->name, ENT_QUOTES, 'UTF-8'); ?>">
-							<img
-								src="<?php echo $baseurl . $imageurl; ?>"
-								alt="<?php echo $alt;?>"
-								<?php if (!empty($width)) echo ' width="' . $width . '"';?>
-								<?php if (!empty($height)) echo ' height="' . $height . '"';?>
-							/>
-						</a>
-					<?php elseif ($target == 2) : ?>
-						<?php // Open in a popup window ?>
-						<a
-							href="<?php echo $link; ?>" onclick="window.open(this.href, '',
-								'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=780,height=550');
-								return false"
-							title="<?php echo htmlspecialchars($item->name, ENT_QUOTES, 'UTF-8'); ?>">
-							<img
-								src="<?php echo $baseurl . $imageurl; ?>"
-								alt="<?php echo $alt;?>"
-								<?php if (!empty($width)) echo ' width="' . $width . '"';?>
-								<?php if (!empty($height)) echo ' height="' . $height . '"';?>
-							/>
-						</a>
-					<?php else : ?>
-						<?php // Open in parent window ?>
-						<a
-							href="<?php echo $link; ?>"
-							title="<?php echo htmlspecialchars($item->name, ENT_QUOTES, 'UTF-8'); ?>">
-							<img
-								src="<?php echo $baseurl . $imageurl; ?>"
-								alt="<?php echo $alt;?>"
-								<?php if (!empty($width)) echo ' width="' . $width . '"';?>
-								<?php if (!empty($height)) echo ' height="' . $height . '"';?>
-							/>
-						</a>
-					<?php endif; ?>
-				<?php else : ?>
-					<?php // Just display the image if no link specified ?>
-					<img
-						src="<?php echo $baseurl . $imageurl; ?>"
-						alt="<?php echo $alt;?>"
-						<?php if (!empty($width)) echo ' width="' . $width . '"';?>
-						<?php if (!empty($height)) echo ' height="' . $height . '"';?>
-					/>
-				<?php endif; ?>
-			<?php elseif (BatbrandHelper::isFlash($imageurl)) : ?>
-				<object
-					classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
-					codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
-					<?php if (!empty($width)) echo ' width="' . $width . '"';?>
-					<?php if (!empty($height)) echo ' height="' . $height . '"';?>
-				>
-					<param name="movie" value="<?php echo $imageurl; ?>" />
-					<embed
-						src="<?php echo $imageurl; ?>"
-						loop="false"
-						pluginspage="http://www.macromedia.com/go/get/flashplayer"
-						type="application/x-shockwave-flash"
-						<?php if (!empty($width)) echo ' width="' . $width . '"';?>
-						<?php if (!empty($height)) echo ' height="' . $height . '"';?>
-					/>
-				</object>
-			<?php endif; ?>
-		<?php endif; ?>
-		<div class="clr"></div>
-	</div>
-<?php endforeach; ?>
 
 <?php if ($footerText) : ?>
 	<div class="batbrandfooter">
