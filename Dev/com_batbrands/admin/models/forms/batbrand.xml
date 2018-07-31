@@ -135,56 +135,10 @@
 		/>
 		
 		<field
-			name="surface_area"
-			type="number"
-			label="COM_BATBRANDS_SURFACE_AREA"
-			description="COM_BATBRANDS_FIELD_SURFACE_AREA_DESC"
-			default="0"
-		/>
-		
-		<field
-			name="angle_processing"
-			type="number"
-			label="COM_BATBRANDS_ANGLE_PROCESSING"
-			description="COM_BATBRANDS_FIELD_ANGLE_PROCESSING_DESC"
-			default="0"
-		/>
-		
-		<field
-			name="spacer"
-			type="number"
-			label="COM_BATBRANDS_SPACER"
-			description="COM_BATBRANDS_FIELD_SPACER_DESC"
-			default="0"
-		/>
-		
-		<field
-			name="color"
+			name="background_color"
 			type="text"
-			label="COM_BATBRANDS_COLOR"
-			description="COM_BATBRANDS_COLOR_DESC"
-		/>
-		
-		<field
-			name="soffit_type"
-			type="text"
-			label="COM_BATBRANDS_SOFFIT_TYPE"
-			description="COM_BATBRANDS_SOFFIT_TYPE_DESC"
-		/>
-		
-		<field
-			name="number_levels"
-			type="number"
-			label="COM_BATBRANDS_NUMBER_LEVELS"
-			description="COM_BATBRANDS_FIELD_NUMBER_LEVELS_DESC"
-		/>
-		
-		<field
-			name="cost"
-			type="number"
-			label="COM_BATBRANDS_COST"
-			description="COM_BATBRANDS_FIELD_COST_DESC"
-			default="0"
+			label="COM_BATBRANDS_BACKGROUND_COLOR"
+			description="COM_BATBRANDS_BACKGROUND_COLOR_DESC"
 		/>
 		
 		<field

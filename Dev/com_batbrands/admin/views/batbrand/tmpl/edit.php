@@ -64,13 +64,7 @@ JFactory::getDocument()->addScriptDeclaration('
 				<?php echo $this->form->renderField('image_small'); ?>
 				<?php echo $this->form->renderField('image_small_alt'); ?>
 				<?php echo $this->form->renderField('header_title'); ?>
-				<?php echo $this->form->renderField('surface_area'); ?>
-				<?php echo $this->form->renderField('angle_processing'); ?>
-				<?php echo $this->form->renderField('spacer'); ?>
-				<?php echo $this->form->renderField('color'); ?>
-				<?php echo $this->form->renderField('soffit_type'); ?>
-				<?php echo $this->form->renderField('number_levels'); ?>
-				<?php echo $this->form->renderField('cost'); ?>
+				<?php echo $this->form->renderField('background_color'); ?>
 				<?php echo $this->form->renderField('header_text'); ?>
 				<?php echo $this->form->renderField('middle_text'); ?>
 				<?php echo $this->form->renderField('footer_text'); ?>
