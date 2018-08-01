@@ -16,19 +16,31 @@ JLoader::register('BatbrandHelper', JPATH_ROOT . '/components/com_batbrands/help
 	<?php echo $headerText; ?>
 <?php endif; ?>
 
+	<style>
+	/* < BRANDS */
+	/* растягивающиеся блоки*/
+	.row-flex {
+	  display: flex;
+	  flex-wrap: wrap;
+	}
+	body {
+		min-width: 320px;
+	}
+	</style>
 
 
-<div class="row">
+<div class="row row-flex row-conformity">
 	<?php foreach ($list as $item) : ?>
 		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 brandbox">
-			<div class="<?php echo $item->alias.' brand';?>">
+			<?php $background_color = $item->background_color; ?>
+			<div class="<?php echo $item->alias.' brand';?>" 
+				 <?php if (!empty($background_color)) echo 'style="background-color: '.$background_color.'"';?> >
 				<?php $link = $item->clickurl ; ?>
 				<?php $image_big = $item->image_big; ?>
 				<?php $image_big_alt = $item->image_big_alt; ?>
 				<?php $image_small = $item->image_small; ?>
 				<?php $image_small_alt = $item->image_small_alt; ?>
 				<?php $header_title = $item->header_title; ?>
-				<?php $background_color = $item->background_color; ?>
 				<?php $header_text = $item->header_text; ?>
 				<?php $middle_text = $item->middle_text; ?>
 				<?php $footer_text = $item->footer_text; ?>
