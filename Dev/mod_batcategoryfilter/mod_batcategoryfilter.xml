@@ -5,8 +5,8 @@
     <version>1.0.0</version>
     <description>A simple Hello, World! module.</description>
     <files>
-        <filename>mod_helloworld.xml</filename>
-        <filename module="mod_helloworld">mod_helloworld.php</filename>
+        <filename>mod_batcategoryfilter.xml</filename>
+        <filename module="mod_batcategoryfilter">mod_batcategoryfilter.php</filename>
         <filename>index.html</filename>
         <filename>helper.php</filename>
         <filename>tmpl/default.php</filename>
