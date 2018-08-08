@@ -17,5 +17,6 @@ defined('_JEXEC') or die;
 // Include the syndicate functions only once
 require_once dirname(__FILE__) . '/helper.php';
 
-$categorylist = modBatCategoryFilterHelper::getCategoryList($params);
+$searchCustomValues = modBatCategoryFilterHelper::getCategoryList($params);
+//modBatCategoryFilterHelper::getSearchCustom();
 require JModuleHelper::getLayoutPath('mod_batcategoryfilter');

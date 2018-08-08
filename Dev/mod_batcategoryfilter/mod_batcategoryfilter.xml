@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.1.0" client="site" method="upgrade">
-    <name>Hello, World!</name>
-    <author>John Doe</author>
+<extension type="module" version="3.5.0" client="site" method="upgrade">
+    <name>BAT category filter</name>
+    <author>DST</author>
     <version>1.0.0</version>
-    <description>A simple Hello, World! module.</description>
+    <description>Mod BAT category filter.</description>
     <files>
         <filename>mod_batcategoryfilter.xml</filename>
         <filename module="mod_batcategoryfilter">mod_batcategoryfilter.php</filename>
