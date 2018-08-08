@@ -86,11 +86,43 @@ class modBatCategoryFilterHelper extends VmView
 							$Opts = $db->loadObjectList();
 							//vmdebug('getSearchCustom my  q2 '.str_replace('#__',$db->getPrefix(),$db->getQuery()) );
 							if($Opts){
+								$unsortarray = array(); // массив для преобразования массива строк в массив чисел
+								$havestring = FALSE;
 								foreach( $Opts as $k => $v ) {
 									if(!isset($valueOptions[$v->customfield_value])) {
-										$valueOptions[$v->customfield_value] = $v->customfield_value;
+
+										if  (is_numeric($v->customfield_value)) {
+											$unsortarray[] = (float)($v->customfield_value);
+										} else 	
+										{
+											$havestring = TRUE;
+										}
+
+										
 									}
 								}
+								if (!$havestring)
+								{
+									asort($unsortarray); // сортировка массива
+									foreach( $unsortarray as $elementofsortedarray ) {								
+											$valueOptions[(string)$elementofsortedarray] = $elementofsortedarray;
+									}
+								}
+								else
+								{
+									foreach( $Opts as $k => $v ) {
+										if(!isset($valueOptions[$v->customfield_value])) {
+											$valueOptions[$v->customfield_value] = $v->customfield_value;
+										}
+									}
+								}	
+	
+								
+								echo '<pre>';
+								//var_dump($valueOptions);
+								echo '</pre>';
+								//exit();
+										
 
 								$v = $app->getUserStateFromRequest ('com_virtuemart.customfields.'.$selected->virtuemart_custom_id, 'customfields['.$selected->virtuemart_custom_id.']', '', 'string');
 								$searchCustomValues .= '<div class="vm-search-custom-values-group"><div class="vm-custom-title-select">' .  vmText::_( $selected->custom_title ).'</div>'.JHtml::_( 'select.genericlist', $valueOptions, 'customfields['.$selected->virtuemart_custom_id.']', 'class="inputbox vm-chzn-select changeSendForm"', 'virtuemart_custom_id', 'custom_title', $v ) . '</div>';
