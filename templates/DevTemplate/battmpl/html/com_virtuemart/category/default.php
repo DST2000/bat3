@@ -19,7 +19,7 @@
  */
 
 defined ('_JEXEC') or die('Restricted access');
-
+echo('we are hire');
 if (vRequest::getInt('dynamic',false) and vRequest::getInt('virtuemart_product_id',false)) {
 	if (!empty($this->products)) {
 		if($this->fallback){
@@ -91,8 +91,9 @@ if ($this->showsearch or $this->keyword !== false) {
 				<?php echo $this->searchCustomList ?>
 			</div>
 			<?php } ?>
-
-			<?php if(!empty($this->searchCustomValues)) { ?>
+			
+			<?php $a = FALSE; ?>
+			<?php if(!empty($this->searchCustomValues)&&$a) { ?>
 			<div class="vm-search-custom-values">
 				<?php echo $this->searchCustomValues ?>
 			</div>
