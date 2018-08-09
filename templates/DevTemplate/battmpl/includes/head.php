@@ -1,9 +1,11 @@
 <?php
 defined('_JEXEC') or die;
 JHtml::_('bootstrap.framework');
+$tpath = $this->baseurl.'/templates/'.$this->template;
 ?>
 <head>
 	<jdoc:include type="head" />
+	<link href="<?php echo $tpath; ?>.'/css/jui/bootstrap.min.css'" rel="stylesheet" type="text/css" />
 <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 	<!--[if lte IE 8]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

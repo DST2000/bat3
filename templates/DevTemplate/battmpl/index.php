@@ -1,5 +1,9 @@
 <?php
 defined('_JEXEC') or die;
+// variables
+$app = JFactory::getApplication();
+$doc = JFactory::getDocument(); 
+$tpath = $this->baseurl.'/templates/'.$this->template;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>">
@@ -196,8 +200,17 @@ defined('_JEXEC') or die;
 </section></div>
 
 <!-- page -->
+	
+<!-- CSS -->
+<!--<link href="<?php //echo $tpath; ?>/css/bootstrap-slider.min.css" rel="stylesheet" type="text/css" />	-->
+<!--<link href="<?php //echo $tpath; ?>/css/ion.rangeSlider.css" rel="stylesheet" type="text/css" />	-->
+<!-- CSS -->
+	
 <!-- JS -->
+<!--<script type="text/javascript" src="<?php //echo $tpath; ?>/js/ion.rangeSlider.min.js"></script>-->
 <script type="text/javascript" src="<?php echo $tpath; ?>/js/template.min.js"></script>
+<!--<script type="text/javascript" src="<?php //echo $tpath; ?>/js/bootstrap-slider.min.js"></script>-->
+<!--<script type="text/javascript" src="<?php //echo $tpath; ?>/js/rangeslider.min.js"></script>-->
 <!-- JS -->
 </body>
 </html>
