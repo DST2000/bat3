@@ -105,7 +105,9 @@ $tpath = $this->baseurl.'/templates/'.$this->template;
 </div>
 <?php  endif; ?>
 <!-- Component -->
+<?php if ((isset($leftcolgrid))&&(isset($rightcolgrid))) : ?>
 <div id="container" class="col-sm-<?php  echo (12-$leftcolgrid-$rightcolgrid); ?>">
+<?php  endif; ?>
 <!-- Content-top Module Position -->
 <?php  if($this->countModules('content-top')) : ?>
 <div id="content-top">
@@ -144,7 +146,9 @@ $tpath = $this->baseurl.'/templates/'.$this->template;
 </div>
 </div>
 <?php  endif; ?>
+<?php if ((isset($leftcolgrid))&&(isset($rightcolgrid))) : ?>
 </div>
+<?php  endif; ?>
 <!-- Right -->
 <?php  if($this->countModules('right')) : ?>
 <div id="sidebar-2" class="col-sm-<?php  echo $rightcolgrid; ?>">
