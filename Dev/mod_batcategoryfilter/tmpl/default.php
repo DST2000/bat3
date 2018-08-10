@@ -28,7 +28,7 @@ echo "<p class='virtuemart_category_id'>".$virtuemart_category_id."</p>";
 <p class="center"> Value_1: </p>
 	<br>
 <input id="ex12a" type="text"/><br/>
-
+<input id="ex12cnumber" type="number" value=""/>
 <br>
 <p class="center"> Value_2: </p>
 	<br>
@@ -41,10 +41,9 @@ echo "<p class='virtuemart_category_id'>".$virtuemart_category_id."</p>";
 <script>
 // With JQuery
 
-jQuery("#ex12a").slider({ id: "slider12a", min: 0, max: 30, range: true, value: [15, 20] });
-jQuery("#ex12a").slider({
-	tooltip: 'always'
-});
+jQuery("#ex12a").slider({ id: "slider12a", min: 0, max: 30, range: true, value: [5, 20], tooltip: 'always'	});
+
+
 
 jQuery("#ex12b").slider({ id: "slider12b", min: 0, max: 140, range: true, value: [2, 130] });
 jQuery("#ex12b").slider({
