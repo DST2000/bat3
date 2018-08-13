@@ -83,4 +83,106 @@ jQuery("#ex12c").slider({
 	}
 
 </style>
+<br>
 
+<br>
+<br>
+<div class="range-slider">
+    <input type="text" class="js-range-slider" value="" />
+</div>
+<div class="extra-controls">
+    Значения
+    от <input type="text" class="js-input-from" value="0" />до
+    <input type="text" class="js-input-to" value="180" />
+
+</div>
+
+<script>
+jQuery(function ($)
+{
+	var $range = $(".js-range-slider");
+	var $inputFrom = $(".js-input-from");
+	var $inputTo = $(".js-input-to");
+	var min = 0;
+	var max = 180;
+	var marks = [30, 55, 100, 140];
+
+	$range.ionRangeSlider({
+		type: "double",
+		min: min,
+		max: max,
+		from: 2,
+		to: 140,
+		onStart: function (data) {
+			addMarks(data.slider);
+		},
+		onChange: updateInputs
+	});
+
+	function convertToPercent (num) {
+		var percent = (num - min) / (max - min) * 100;
+
+		return percent;
+	}
+
+	function addMarks ($slider) {
+		var html = '';
+		var left = 0;
+		var i;
+
+		for (i = 0; i < marks.length; i++) {
+			left = convertToPercent(marks[i]);
+			html += '<span class="mark" style="left: ' + left + '%">' + marks[i] + '</span>';
+		}
+
+		$slider.append(html);
+	}
+
+	function updateInputs (data) {
+		from = data.from;
+		to = data.to;
+
+		$inputFrom.prop("value", from);
+		$inputTo.prop("value", to);	
+	}
+	
+	
+});
+
+</script>
+
+<style>
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    overflow: hidden;
+    margin: 40px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+.range-slider {
+    position: relative;
+    height: 80px;
+}
+.extra-controls {
+    position: relative;
+    border-top: 3px solid #000;
+    padding: 10px 0 0;
+}
+
+.mark {
+    display: block;
+    position: absolute;
+    top: 45px;
+    background: #f00;
+    transform: rotate(-45deg);
+    padding: 1px 3px;
+    border-radius: 3px;
+    color: #fff;
+    margin-left: -10px;
+}
+
+</style>
