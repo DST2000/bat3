@@ -53,6 +53,10 @@ class modBatCategoryFilterHelper extends VmView
 			if(!empty($virtuemart_category_id)){
 				$q1 .= ' virtuemart_category_id="'.$virtuemart_category_id.'" and';
 			}
+//			echo '<pre>';
+//			var_dump($_REQUEST);
+//			echo '</pre>';
+//			exit();
 			$q1 .= ' searchable="1" and (field_type="S" or field_type="P") and c.published = 1 GROUP BY c.virtuemart_custom_id';
 
 			$db->setQuery($q1);
@@ -101,12 +105,83 @@ class modBatCategoryFilterHelper extends VmView
 										
 									}
 								}
-								if (!$havestring)
+								if (!$havestring&& (count($unsortarray)>2))
 								{
 									asort($unsortarray); // сортировка массива
 									foreach( $unsortarray as $elementofsortedarray ) {								
-											$valueOptions[(string)$elementofsortedarray] = $elementofsortedarray;
+											$valueOptions[(string)$elementofsortedarray] = $elementofsortedarray;							
 									}
+									$unsortarray_values = array_values($unsortarray);
+									$searchCustomValues .= '<div class="extra-controls"><div class="range-slider">'.
+											'<input type="text" class="js-range-slider-'. vmText::_( $selected->virtuemart_custom_id ) .'"'.' value="" />'
+											.'</div>'
+											.'<h3>'
+											.vmText::_( $selected->custom_title )
+											.'</h3> значения от '
+											.'<input type="text" class="js-input-from-'. vmText::_( $selected->virtuemart_custom_id ) .'" '.' value="'.$unsortarray_values[0].'" />'
+											.' до '
+											.'<input type="text" class='. '"'.'js-input-to-'. vmText::_( $selected->virtuemart_custom_id ).'" '
+											.' value="'.end($unsortarray).'" />'
+											.'</div>';
+									
+									$searchCustomValues .=
+										
+											'<script>
+											jQuery(function ($)
+											{
+												var $range = $(".js-range-slider-'. vmText::_( $selected->virtuemart_custom_id ) .'");
+												var $inputFrom = $(".js-input-from-'. vmText::_( $selected->virtuemart_custom_id ) .'");
+												var $inputTo = $(".js-input-to-'. vmText::_( $selected->virtuemart_custom_id ) .'");
+												var min = "'. $unsortarray_values[0] .'";
+												var max = "'. end($unsortarray) .'";
+												mid = ((Number(max)-Number(min)) /4).toFixed(0);
+												var marks = [(Number(min)+Number(mid)).toFixed(0), (mid*2+Number(min)).toFixed(0), (mid*3+Number(min)).toFixed(0)];
+
+												$range.ionRangeSlider({
+													type: "double",
+													min: min,
+													max: max,
+													from: min,
+													to: max,
+													onStart: function (data) {
+														addMarks(data.slider);
+													},
+													onChange: updateInputs
+												});
+
+												function convertToPercent (num) {
+													var percent = (num - min) / (max - min) * 100;
+
+													return percent;
+												}
+
+												function addMarks ($slider) {
+													var html = '.' \'\' '.';
+													var left = 0;
+													var i;
+
+													for (i = 0; i < marks.length; i++) {
+														left = convertToPercent(marks[i]);
+														
+														html += '.' \' '.'<span class="mark" style="left: '.'\''.' + left + '.'\''.'%">'.'\' + marks[i] + '.' \' '.'</span> '.' \' '.';
+													}
+
+													$slider.append(html);
+												}
+
+												function updateInputs (data) {
+													from = data.from;
+													to = data.to;
+
+													$inputFrom.prop("value", from);
+													$inputTo.prop("value", to);	
+												}
+
+
+											});
+
+											</script>';
+										
 								}
 								else
 								{
@@ -115,17 +190,19 @@ class modBatCategoryFilterHelper extends VmView
 											$valueOptions[$v->customfield_value] = $v->customfield_value;
 										}
 									}
+									$v = $app->getUserStateFromRequest ('com_virtuemart.customfields.'.$selected->virtuemart_custom_id, 'customfields['.$selected->virtuemart_custom_id.']', '', 'string');
+									$searchCustomValues .= '<div class="vm-search-custom-values-group"><div class="vm-custom-title-select">' .  vmText::_( $selected->custom_title ).'</div>'.JHtml::_( 'select.genericlist', $valueOptions, 'customfields['.$selected->virtuemart_custom_id.']', 'class="inputbox vm-chzn-select changeSendForm"', 'virtuemart_custom_id', 'custom_title', $v ) . '</div>';
 								}	
 	
 								
 								echo '<pre>';
+								
 								//var_dump($valueOptions);
 								echo '</pre>';
 								//exit();
 										
 
-								$v = $app->getUserStateFromRequest ('com_virtuemart.customfields.'.$selected->virtuemart_custom_id, 'customfields['.$selected->virtuemart_custom_id.']', '', 'string');
-								$searchCustomValues .= '<div class="vm-search-custom-values-group"><div class="vm-custom-title-select">' .  vmText::_( $selected->custom_title ).'</div>'.JHtml::_( 'select.genericlist', $valueOptions, 'customfields['.$selected->virtuemart_custom_id.']', 'class="inputbox vm-chzn-select changeSendForm"', 'virtuemart_custom_id', 'custom_title', $v ) . '</div>';
+								
 							}
 
 							//vmdebug('getSearchCustom '.$q2,$Opts,$valueOptions);
