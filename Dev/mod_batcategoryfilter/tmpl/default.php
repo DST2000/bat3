@@ -14,7 +14,7 @@ else
 	{
 		$virtuemart_category_id = "category_not_set";
 	}
-echo "<p class='virtuemart_category_id'>".$virtuemart_category_id."</p>";
+//echo "<p class='virtuemart_category_id'>".$virtuemart_category_id."</p>";
 ?>
 
 <!--
@@ -89,10 +89,8 @@ echo "<p class='virtuemart_category_id'>".$virtuemart_category_id."</p>";
 */
 
 </style>
-<br>
 
-<br>
-<br>
+<!--
 <div class="col-md-12">
 <div class="range-slider">
     <input type="text" class="js-range-slider" value="" />
@@ -104,57 +102,58 @@ echo "<p class='virtuemart_category_id'>".$virtuemart_category_id."</p>";
 
 </div>
 </div>
+-->
 <script>
-jQuery(function ($)
-{
-	var $range = $(".js-range-slider");
-	var $inputFrom = $(".js-input-from");
-	var $inputTo = $(".js-input-to");
-	var min = 0;
-	var max = 180;
-	var marks = [30, 55, 100, 140];
-
-	$range.ionRangeSlider({
-		type: "double",
-		min: min,
-		max: max,
-		from: 2,
-		to: 140,
-		onStart: function (data) {
-			addMarks(data.slider);
-		},
-		onChange: updateInputs
-	});
-
-	function convertToPercent (num) {
-		var percent = (num - min) / (max - min) * 100;
-
-		return percent;
-	}
-
-	function addMarks ($slider) {
-		var html = '';
-		var left = 0;
-		var i;
-
-		for (i = 0; i < marks.length; i++) {
-			left = convertToPercent(marks[i]);
-			html += '<span class="mark" style="left: ' + left + '%">' + marks[i] + '</span>';
-		}
-
-		$slider.append(html);
-	}
-
-	function updateInputs (data) {
-		from = data.from;
-		to = data.to;
-
-		$inputFrom.prop("value", from);
-		$inputTo.prop("value", to);	
-	}
-	
-	
-});
+//jQuery(function ($)
+//{
+//	var $range = $(".js-range-slider");
+//	var $inputFrom = $(".js-input-from");
+//	var $inputTo = $(".js-input-to");
+//	var min = 0;
+//	var max = 180;
+//	var marks = [30, 55, 100, 140];
+//
+//	$range.ionRangeSlider({
+//		type: "double",
+//		min: min,
+//		max: max,
+//		from: 2,
+//		to: 140,
+//		onStart: function (data) {
+//			addMarks(data.slider);
+//		},
+//		onChange: updateInputs
+//	});
+//
+//	function convertToPercent (num) {
+//		var percent = (num - min) / (max - min) * 100;
+//
+//		return percent;
+//	}
+//
+//	function addMarks ($slider) {
+//		var html = '';
+//		var left = 0;
+//		var i;
+//
+//		for (i = 0; i < marks.length; i++) {
+//			left = convertToPercent(marks[i]);
+//			html += '<span class="mark" style="left: ' + left + '%">' + marks[i] + '</span>';
+//		}
+//
+//		$slider.append(html);
+//	}
+//
+//	function updateInputs (data) {
+//		from = data.from;
+//		to = data.to;
+//
+//		$inputFrom.prop("value", from);
+//		$inputTo.prop("value", to);	
+//	}
+//	
+//	
+//});
 
 </script>
 
@@ -164,8 +163,6 @@ html {
     height: 100%;
 }
 body {
-    height: 100%;
-    overflow: hidden;
     margin: 40px;
     font-family: Arial, sans-serif;
     font-size: 12px;

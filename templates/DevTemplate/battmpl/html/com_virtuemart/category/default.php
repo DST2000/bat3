@@ -92,7 +92,7 @@ if ($this->showsearch or $this->keyword !== false) {
 			</div>
 			<?php } ?>
 			
-			<?php $a = FALSE; ?>
+			<?php $a = TRUE; ?>
 			<?php if(!empty($this->searchCustomValues)&&$a) { ?>
 			<div class="vm-search-custom-values">
 				<?php echo $this->searchCustomValues ?>
